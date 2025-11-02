@@ -1,32 +1,34 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+  // =========================
   // MENU LATERAL
+  // =========================
   const menuBtn = document.getElementById('menuBtn');
   const sidebar = document.getElementById('sidebar');
+  const bars = menuBtn ? menuBtn.querySelectorAll('.bar') : [];
 
   if (menuBtn && sidebar) {
-    menuBtn.addEventListener('click', function(e) {
+    menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       sidebar.classList.toggle('active');
-      menuBtn.querySelector('.bar1').classList.toggle('active');
-      menuBtn.querySelector('.bar2').classList.toggle('active');
-      menuBtn.querySelector('.bar3').classList.toggle('active');
+      bars.forEach(bar => bar.classList.toggle('active'));
     });
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', (e) => {
       if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
         sidebar.classList.remove('active');
-        menuBtn.querySelector('.bar1').classList.remove('active');
-        menuBtn.querySelector('.bar2').classList.remove('active');
-        menuBtn.querySelector('.bar3').classList.remove('active');
+        bars.forEach(bar => bar.classList.remove('active'));
       }
     });
   }
 
-  // CARROSSEL (apenas se existir)
+  // =========================
+  // CARROSSEL (apenas index.html)
+  // =========================
   const carousel = document.getElementById('carousel');
   if (carousel) {
     let currentIndex = 0;
-    const slides = carousel.querySelectorAll('img');
+    const slides = Array.from(carousel.querySelectorAll('img'));
+    
     slides.forEach((slide, i) => {
       if (i === 0) slide.classList.add('active');
       slide.style.position = 'absolute';
@@ -37,22 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
       slide.style.objectFit = 'cover';
     });
 
-    setInterval(function() {
+    setInterval(() => {
       slides[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % slides.length;
       slides[currentIndex].classList.add('active');
     }, 3000);
   }
 
-  // FORMULÁRIO (apenas se existir)
+  // =========================
+  // FORMULÁRIO (apenas contato.html)
+  // =========================
   const form = document.getElementById('contactForm');
   const successMessage = document.getElementById('successMessage');
+  
   if (form) {
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      const url = "https://formspree.io/f/SEU_CODIGO"; // troque aqui pelo seu endpoint real
+      const url = "https://formspree.io/f/SEU_CODIGO"; // substituir pelo endpoint real
 
       if (url.includes("SEU_CODIGO")) {
         alert("Formulário ainda não configurado.");
