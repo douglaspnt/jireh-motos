@@ -1,4 +1,3 @@
-// Espera o DOM carregar completamente
 document.addEventListener('DOMContentLoaded', function() {
   // MENU LATERAL
   const menuBtn = document.getElementById('menuBtn');
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // CARROSSEL (se existir)
+  // CARROSSEL (apenas se existir)
   const carousel = document.getElementById('carousel');
   if (carousel) {
     let currentIndex = 0;
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   }
 
-  // FORMULÁRIO (apenas contato)
+  // FORMULÁRIO (apenas se existir)
   const form = document.getElementById('contactForm');
   const successMessage = document.getElementById('successMessage');
   if (form) {
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      const url = "https://formspree.io/f/SEU_CODIGO"; // troque aqui
+      const url = "https://formspree.io/f/SEU_CODIGO"; // troque aqui pelo seu endpoint real
 
       if (url.includes("SEU_CODIGO")) {
         alert("Formulário ainda não configurado.");
