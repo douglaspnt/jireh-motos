@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contato - Jireh Motos</title>
+<meta name="description" content="Contato Jireh Motos - envie sua mensagem, WhatsApp e redes sociais.">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.contact-section {
+  margin-top: 100px;
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 3rem;
+}
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.contact-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.6rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background: #111;
+  box-shadow: 0 0 12px #00ff88;
+  transition:0.3s;
+}
+.contact-links a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff88;
+}
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.input-group {
+  position: relative;
+}
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #00e676;
+}
+input, textarea {
+  padding: 1rem 1rem 1rem 3rem;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+input:focus, textarea:focus {
+  box-shadow: 0 0 15px #00ff88;
+}
+button {
+  padding: 1rem;
+  background: #00e676;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #00b300;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.success-message {
+  display: none;
+  background: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+@media(max-width:600px){
+  .contact-links a { font-size: 1.4rem; padding: 0.8rem 1rem;}
+  .contact-section h2 { font-size: 2.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- CABEÇALHO -->
+<header>
+  <div class="logo-header">
+    <img src="img/logo.jpg" alt="Logo Jireh">
+    <h1>Jireh Motos</h1>
+  </div>
+  <div class="menu-btn" id="menuBtn">
+    <span class="bar bar1"></span>
+    <span class="bar bar2"></span>
+    <span class="bar bar3"></span>
+    <span class="menu-text">MENU</span>
+  </div>
+</header>
+
+<!-- MENU LATERAL -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html" class="menu-item"><i class="fas fa-motorcycle"></i> Início</a>
+  <a href="servicos.html" class="menu-item"><i class="fas fa-tools"></i> Serviços</a>
+  <a href="contato.html" class="menu-item"><i class="fas fa-phone-alt"></i> Contato</a>
+</div>
+
+<!-- CONTEÚDO -->
+<main>
+  <section class="contact-section">
+    <h2>Entre em Contato</h2>
+    <div class="contact-links">
+      <div class="contact-row">
+        <a href="https://wa.me/11989488282" target="_blank"><i class="fab fa-whatsapp"></i> (11) 98948-8282</a>
+        <a href="https://wa.me/11945017680" target="_blank"><i class="fab fa-whatsapp"></i> (11) 94501-7680</a>
+      </div>
+      <div class="contact-row">
+        <a href="https://www.instagram.com/jirehmotos1/" target="_blank"><i class="fab fa-instagram"></i> @jirehmotos1</a>
+      </div>
+      <div class="contact-row">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Alferes+Bonilha+210,+São+Bernardo+do+Campo,+Brazil" target="_blank"><i class="fas fa-map-marker-alt"></i> Rua Alferes Bonilha, 210 - Centro - São Bernardo do Campo, SP</a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div class="input-group"><i class="fa fa-user"></i><input type="text" name="name" placeholder="Seu nome" required></div>
+      <div class="input-group"><i class="fa fa-envelope"></i><input type="email" name="_replyto" placeholder="Seu e-mail" required></div>
+      <div class="input-group"><i class="fa fa-comment"></i><textarea name="message" rows="5" placeholder="Sua mensagem" required></textarea></div>
+      <button type="submit">Enviar</button>
+      <div class="success-message" id="successMessage">Obrigado! Sua mensagem foi enviada com sucesso.</div>
+    </form>
+  </section>
+</main>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/11989488282" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+  <span class="tooltip">Clique para falar no WhatsApp</span>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

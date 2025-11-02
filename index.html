@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jireh Motos</title>
+<meta name="description" content="DEUS PROVERÁ - Seu sonho em duas rodas está aqui • Concessionária Multimarcas - Rua Alferes Bonilha, 210 - São Bernardo do Campo, SP">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- CABEÇALHO -->
+<header>
+  <div class="logo-header">
+    <img src="img/logo.jpg" alt="Logo Jireh">
+    <h1>Jireh Motos</h1>
+  </div>
+  <div class="menu-btn" id="menuBtn">
+    <span class="bar bar1"></span>
+    <span class="bar bar2"></span>
+    <span class="bar bar3"></span>
+    <span class="menu-text">MENU</span>
+  </div>
+</header>
+
+<!-- MENU LATERAL -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html" class="menu-item"><i class="fas fa-motorcycle"></i> Início</a>
+  <a href="servicos.html" class="menu-item"><i class="fas fa-tools"></i> Serviços</a>
+  <a href="contato.html" class="menu-item"><i class="fas fa-phone-alt"></i> Contato</a>
+</div>
+
+<!-- CARROSSEL -->
+<div class="carousel" id="carousel">
+  <img src="img/img1.jpg" alt="Foto 1" class="active">
+  <img src="img/img2.jpg" alt="Foto 2">
+  <img src="img/img3.jpg" alt="Foto 3">
+</div>
+
+<!-- INFORMAÇÕES -->
+<div class="info-section">
+  <div class="highlight">
+    <img src="img/logo.jpg" alt="Logo Jireh">
+    <span>DEUS PROVERÁ</span>
+  </div>
+  <p>Seu sonho em duas rodas está aqui • Concessionária Multimarcas</p>
+  <p>Rua Alferes Bonilha, 210 - Centro - São Bernardo do Campo, SP</p>
+</div>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/11989488282" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+  <span class="tooltip">Clique para falar no WhatsApp</span>
+</a>
+
+<script src="js/script.js"></script>
+<script>
+// MENU LATERAL
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+menuBtn.addEventListener('click', ()=>{
+  sidebar.classList.toggle('active');
+  menuBtn.querySelector('.bar1').classList.toggle('active');
+  menuBtn.querySelector('.bar2').classList.toggle('active');
+  menuBtn.querySelector('.bar3').classList.toggle('active');
+});
+document.addEventListener('click', (e)=>{
+  if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){
+    sidebar.classList.remove('active');
+    menuBtn.querySelector('.bar1').classList.remove('active');
+    menuBtn.querySelector('.bar2').classList.remove('active');
+    menuBtn.querySelector('.bar3').classList.remove('active');
+  }
+});
+
+// CARROSSEL COM FADE
+let currentIndex = 0;
+const carousel = document.getElementById('carousel');
+const slides = carousel.getElementsByTagName('img');
+setInterval(()=>{
+  slides[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex+1)%slides.length;
+  slides[currentIndex].classList.add('active');
+},4000);
+</script>
+
+</body>
+</html>
