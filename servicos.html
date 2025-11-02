@@ -1,107 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Serviços - Jireh Motos</title>
-<meta name="description" content="Conheça todos os serviços da Jireh Motos: venda, compra, consignação, motos zero, parcelamento, financiamento e troca de motocicleta.">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<style>
-/* Seção de serviços */
-.services-section {
-  margin-top: 100px;
-  text-align: center;
-}
-.services-section h2 {
-  font-size: 3rem;
-  color: #ffffff;
-  text-shadow: 0 0 12px #00e676;
-  margin-bottom: 3rem;
-}
-.services-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4rem;
-  padding: 3rem 1rem 5rem 1rem;
-}
-.service-card {
-  background: #111;
-  color: #ffffff;
-  padding: 3rem;
-  border-radius: 15px;
-  min-width: 240px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 0.5rem;
-  transition: 0.3s;
-  box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
-}
-.service-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 230, 118, 0.6);
-}
-@media(max-width:900px) {
-  .services-cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 1rem 3rem 1rem;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Serviços - Jireh Motos</title>
+  <meta name="description" content="Conheça todos os serviços da Jireh Motos: venda, compra, consignação, motos zero, parcelamento, financiamento e troca de motocicleta.">
+  <link rel="icon" href="img/logo.jpg" type="image/jpg">
+  
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Seção de serviços */
+    .services-section {
+      margin-top: 100px;
+      text-align: center;
+    }
+
+    /* Título branco com glow verde */
+    .services-section h2 {
+      font-size: 3rem;
+      color: #ffffff; /* branco */
+      text-shadow: 0 0 12px #00e676; /* glow verde */
+      margin-bottom: 3rem;
+    }
+
+    /* Container de cards */
+    .services-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4rem; /* espaço maior entre os cards */
+      padding: 3rem 1rem 5rem 1rem;
+    }
+
+    /* Card individual */
+    .service-card {
+      background: #111;
+      color: #ffffff; /* texto branco */
+      padding: 3rem;
+      border-radius: 15px;
+      min-width: 240px;
+      font-weight: bold;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.5rem;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); /* glow verde de fundo */
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 230, 118, 0.6); /* glow verde mais intenso */
+    }
+
+    /* Responsivo */
+    @media(max-width:900px) {
+      .services-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 1rem 3rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- CABEÇALHO -->
-<header>
-  <div class="logo-header">
-    <img src="img/logo.jpg" alt="Logo Jireh">
-    <h1>Jireh Motos</h1>
-  </div>
-  <div class="menu-btn" id="menuBtn">
-    <span class="bar bar1"></span>
-    <span class="bar bar2"></span>
-    <span class="bar bar3"></span>
-    <span class="menu-text">MENU</span>
-  </div>
-</header>
-
-<!-- MENU LATERAL -->
-<div class="sidebar" id="sidebar">
-  <a href="index.html" class="menu-item"><i class="fas fa-motorcycle"></i> Início</a>
-  <a href="servicos.html" class="menu-item"><i class="fas fa-tools"></i> Serviços</a>
-  <a href="contato.html" class="menu-item"><i class="fas fa-phone-alt"></i> Contato</a>
-</div>
-
-<!-- SEÇÃO DE SERVIÇOS -->
-<main>
-  <section class="services-section">
-    <h2>Nossos Serviços</h2>
-    <div class="services-cards">
-      <div class="service-card">🛵 Venda de Motos</div>
-      <div class="service-card">💸 Compra de Motos</div>
-      <div class="service-card">🔁 Consignação</div>
-      <div class="service-card">🏍️ Motos Zero KM</div>
-      <div class="service-card">💳 Parcelamos em até 24x</div>
-      <div class="service-card">💰 Financiamento</div>
-      <div class="service-card">🔄 Aceita Troca de Motocicleta</div>
+  <!-- CABEÇALHO FIXO -->
+  <header>
+    <div class="logo-header">
+      <img src="img/logo.jpg" alt="Logo Jireh">
+      <h1>Jireh Motos</h1>
     </div>
-  </section>
-</main>
+    <div class="menu-btn" id="menuBtn">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+      <span class="menu-text">MENU</span>
+    </div>
+  </header>
 
-<!-- WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/11989488282" target="_blank" class="whatsapp-float">
-  <i class="fab fa-whatsapp"></i>
-  <span class="tooltip">Clique para falar no WhatsApp</span>
-</a>
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html" class="menu-item"><i class="fas fa-motorcycle"></i> Início</a>
+    <a href="servicos.html" class="menu-item"><i class="fas fa-tools"></i> Serviços</a>
+    <a href="contato.html" class="menu-item"><i class="fas fa-phone-alt"></i> Contato</a>
+  </div>
 
-<script src="js/script.js"></script>
+  <!-- SEÇÃO DE SERVIÇOS -->
+  <main>
+    <section class="services-section">
+      <h2>Nossos Serviços</h2>
+      <div class="services-cards">
+        <div class="service-card">🛵 Venda de Motos</div>
+        <div class="service-card">💸 Compra de Motos</div>
+        <div class="service-card">🔁 Consignação</div>
+        <div class="service-card">🏍️ Motos Zero KM</div>
+        <div class="service-card">💳 Parcelamos em até 24x</div>
+        <div class="service-card">💰 Financiamento</div>
+        <div class="service-card">🔄 Aceita Troca de Motocicleta</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/11989488282" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- SCRIPT -->
+  <script src="js/script.js"></script>
 </body>
 </html>
