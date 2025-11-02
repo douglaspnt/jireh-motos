@@ -1,18 +1,19 @@
-// MENU LATERAL (safe checks)
+// ==============================
+// MENU LATERAL
+// ==============================
 const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.getElementById('sidebar');
 
 if (menuBtn && sidebar) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // evita que o clique no botão feche imediatamente
+  menuBtn.addEventListener('click', e => {
+    e.stopPropagation(); // evita fechar imediatamente
     sidebar.classList.toggle('active');
     menuBtn.querySelector('.bar1')?.classList.toggle('active');
     menuBtn.querySelector('.bar2')?.classList.toggle('active');
     menuBtn.querySelector('.bar3')?.classList.toggle('active');
   });
 
-  // Fecha menu ao clicar fora
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
       sidebar.classList.remove('active');
       menuBtn.querySelector('.bar1')?.classList.remove('active');
@@ -22,56 +23,69 @@ if (menuBtn && sidebar) {
   });
 }
 
-// CARROSSEL (fade) - somente se existir
+// ==============================
+// CARROSSEL RESPONSIVO FUNCIONAL
+// ==============================
 const carousel = document.getElementById('carousel');
-if (carousel) {
-  let currentIndex = 0;
-  const slides = carousel.querySelectorAll('img');
-  // garante que só uma imagem comece ativa
-  slides.forEach((s, i) => {
-    if (i === 0) s.classList.add('active');
-    else s.classList.remove('active');
-    s.style.position = 'absolute';
-    s.style.left = 0;
-    s.style.top = 0;
-  });
+const slides = document.querySelectorAll('.carousel-slide');
+let currentIndex = 0;
 
-  setInterval(() => {
-    slides[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % slides.length;
-    slides[currentIndex].classList.add('active');
-  }, 3000);
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
 }
 
-// FORMULÁRIO (apenas na página contato)
+function adjustHeight() {
+  const img = slides[currentIndex].querySelector('img');
+  if (img.complete) {
+    let imgHeight = img.naturalHeight * (carousel.offsetWidth / img.naturalWidth);
+    let maxHeight = window.innerHeight * 0.8;
+    carousel.style.height = Math.min(imgHeight, maxHeight) + 'px';
+  } else {
+    img.addEventListener('load', () => {
+      let imgHeight = img.naturalHeight * (carousel.offsetWidth / img.naturalWidth);
+      let maxHeight = window.innerHeight * 0.8;
+      carousel.style.height = Math.min(imgHeight, maxHeight) + 'px';
+    });
+  }
+}
+
+window.addEventListener('load', () => {
+  adjustHeight();
+  showSlide(currentIndex);
+});
+
+window.addEventListener('resize', adjustHeight);
+
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  showSlide(currentIndex);
+  adjustHeight();
+}, 3000);
+
+// ==============================
+// FORMULÁRIO DE CONTATO
+// ==============================
 const form = document.getElementById('contactForm');
 const successMessage = document.getElementById('successMessage');
-if (form) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    const url = "https://formspree.io/f/SEU_CODIGO"; // substitua com seu endpoint real
-    if (url.includes("SEU_CODIGO")) {
-      alert("Formulário ainda não configurado. Adicione o código Formspree no arquivo js/script.js.");
-      return;
-    }
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      if (response.ok) {
-        form.reset();
-        if (successMessage) successMessage.style.display = "block";
-      } else {
-        alert("Ocorreu um erro. Tente novamente.");
-      }
-    } catch (err) {
-      alert("Ocorreu um erro. Verifique sua conexão.");
-      console.error(err);
-    }
+
+if (form && successMessage) {
+  // Garante que a mensagem comece invisível
+  successMessage.style.display = 'none';
+
+  form.addEventListener('submit', e => {
+    e.preventDefault(); // evita envio real
+
+    // Aqui você poderia adicionar fetch/axios para enviar a mensagem de verdade
+    // Simulação de envio bem-sucedido:
+    successMessage.style.display = 'block';
+    form.reset();
+
+    // Oculta a mensagem após 5 segundos
+    setTimeout(() => {
+      successMessage.style.display = 'none';
+    }, 5000);
   });
 }
 

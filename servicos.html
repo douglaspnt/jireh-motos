@@ -20,11 +20,11 @@
       text-align: center;
     }
 
-    /* Título branco com glow verde */
+    /* Título branco com glow branco */
     .services-section h2 {
       font-size: 3rem;
-      color: #ffffff; /* branco */
-      text-shadow: 0 0 12px #00e676; /* glow verde */
+      color: #fff; /* branco uniforme */
+      text-shadow: 0 0 12px #fff; /* glow branco */
       margin-bottom: 3rem;
     }
 
@@ -33,31 +33,31 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 4rem; /* espaço maior entre os cards */
+      gap: 4rem; 
       padding: 3rem 1rem 5rem 1rem;
     }
 
     /* Card individual */
     .service-card {
-      background: #111;
-      color: #ffffff; /* texto branco */
-      padding: 3rem;
-      border-radius: 15px;
+      background: #fff; /* fundo branco igual ao formulário */
+      color: #000; /* texto preto igual ao formulário */
+      padding: 2.5rem; /* ajuste de tamanho de padding */
+      border-radius: 12px; /* borda arredondada igual ao formulário */
       min-width: 240px;
       font-weight: bold;
-      font-size: 1.4rem;
+      font-size: 1.25rem; /* fonte um pouco menor que antes */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       gap: 0.5rem;
       transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); /* glow verde de fundo */
+      box-shadow: 0 0 12px #fff; /* glow branco */
     }
 
     .service-card:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 230, 118, 0.6); /* glow verde mais intenso */
+      box-shadow: 0 0 20px #fff; /* glow branco ao passar o mouse */
     }
 
     /* Responsivo */
