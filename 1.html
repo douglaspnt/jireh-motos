@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JIREH MOTOS</title>
+  <meta name="description" content="Seu sonho em duas rodas está aqui - Concessionária de motos novas e seminovas.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* GERAL */
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
+    body {background:#000; color:#fff; overflow-x:hidden;}
+
+    /* CABEÇALHO */
+    header {
+      width:100%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 30px;
+    }
+    .logo-area {
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+    .logo-area img {
+      height:60px;
+    }
+    .logo-area h1 {
+      font-family:'Bebas Neue', sans-serif;
+      font-size:2.8rem;
+      color:#000;
+      letter-spacing:2px;
+    }
+    .header-right {
+      font-size:1.2rem;
+      color:#bbb;
+      font-weight:500;
+    }
+
+    /* FAIXA VERMELHA */
+    .faixa-vermelha {
+      width:100%;
+      height:6px;
+      background:#d40000;
+    }
+
+    /* CARROSSEL */
+    .carousel {
+      position:relative;
+      width:100%;
+      height:70vh;
+      overflow:hidden;
+    }
+    .carousel img {
+      position:absolute;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1s ease-in-out;
+    }
+    .carousel img.active {
+      opacity:1;
+    }
+
+    /* FRASE ACIMA DO SAIBA MAIS */
+    .frase {
+      text-align:center;
+      font-size:1.8rem;
+      color:#fff;
+      margin:40px 0 15px 0;
+      font-weight:600;
+      font-style:italic;
+    }
+
+    /* FAIXA SAIBA MAIS */
+    .saiba-mais {
+      width:90%;
+      margin:0 auto;
+      background:#d40000;
+      text-align:center;
+      padding:20px;
+      border-radius:8px;
+      transition:0.3s;
+    }
+    .saiba-mais a {
+      text-decoration:none;
+      color:#fff;
+      font-size:1.8rem;
+      font-weight:700;
+    }
+    .saiba-mais:hover {
+      transform:scale(1.05);
+      box-shadow:0 0 20px rgba(255,0,0,0.4);
+    }
+
+    /* BOTÃO MENU */
+    .menu-container {
+      display:flex;
+      justify-content:center;
+      margin:40px 0;
+    }
+    .menu-btn {
+      background:#fff;
+      color:#000;
+      border:none;
+      padding:15px 40px;
+      font-size:1.4rem;
+      font-weight:bold;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .menu-btn:hover {
+      background:#d40000;
+      color:#fff;
+    }
+
+    /* MENU LATERAL */
+    .sidebar {
+      position:fixed;
+      top:0;
+      right:-250px;
+      width:250px;
+      height:100%;
+      background:#111;
+      padding:2rem;
+      transition:0.4s;
+      z-index:1000;
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+    .sidebar.active {right:0;}
+    .sidebar a {
+      color:#fff;
+      font-size:1.3rem;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+    .sidebar a:hover {
+      color:#d40000;
+      transform:scale(1.05);
+    }
+
+    @media(max-width:900px){
+      header {flex-direction:column; text-align:center;}
+      .header-right {margin-top:5px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo-area">
+      <img src="img/logo.png" alt="Logo Jireh">
+      <h1>JIREH MOTOS</h1>
+    </div>
+    <div class="header-right">Concessionária motos de novas e seminovas</div>
+  </header>
+
+  <!-- FAIXA VERMELHA -->
+  <div class="faixa-vermelha"></div>
+
+  <!-- CARROSSEL -->
+  <div class="carousel" id="carousel">
+    <img src="img/img1.png" class="active" alt="Moto 1">
+    <img src="img/img2.png" alt="Moto 2">
+    <img src="img/img3.png" alt="Moto 3">
+  </div>
+
+  <!-- FRASE -->
+  <div class="frase">Seu sonho em duas rodas está aqui</div>
+
+  <!-- SAIBA MAIS -->
+  <div class="saiba-mais">
+    <a href="https://wa.me/5511989488282" target="_blank">SAIBA MAIS</a>
+  </div>
+
+  <!-- BOTÃO MENU -->
+  <div class="menu-container">
+    <button class="menu-btn" id="menuBtn">MENU</button>
+  </div>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="servicos.html"><i class="fas fa-tools"></i> Serviços</a>
+    <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
+  </div>
+
+  <script>
+    // CARROSSEL
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+    setInterval(() => {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+    }, 3000);
+
+    // MENU LATERAL
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
