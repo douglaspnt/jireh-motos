@@ -105,15 +105,15 @@
 
     /* BOTÃO SAIBA MAIS - FAIXA LARGA */
     .saiba-mais {
-      width:95%;
-      max-width:none;
+      width:95%;          /* quase toda a largura da tela */
+      max-width:none;     /* remove limite máximo */
       background:#d40000;
       text-align:center;
       padding:20px 0;
       border-radius:10px;
       transition:0.3s;
       box-shadow:0 5px 15px rgba(0,0,0,0.5);
-      margin:0 auto;
+      margin:0 auto;      /* centraliza horizontalmente */
     }
     .saiba-mais a {
       text-decoration:none;
@@ -144,8 +144,8 @@
     /* MENU LATERAL DIREITO, PEQUENO, MAIS PARA CIMA */
     .sidebar {
       position:fixed;
-      top:20%;
-      right:-220px;
+      top:20%; /* mais para cima do que o centro */
+      right:-220px; /* fora da tela inicialmente */
       width:220px;
       background:#111;
       padding:1.5rem;
@@ -168,23 +168,10 @@
     }
     .sidebar a:hover {color:#d40000; transform:scale(1.05);}
 
-    /* RESPONSIVO PARA CELULAR */
-    @media(max-width:600px){
-      .saiba-mais {
-        width:90%;
-        padding:15px 0;
-      }
-      .saiba-mais a {font-size:1.4rem;}
-      .menu-btn {
-        padding:12px 30px;
-        font-size:1.2rem;
-      }
-      .arrow {font-size:2rem; padding:8px;}
-    }
-
     @media(max-width:900px){
       header {flex-direction:column; text-align:center;}
       .header-right {margin-top:5px;}
+      .arrow {font-size:2.5rem;}
     }
   </style>
 </head>
@@ -197,7 +184,7 @@
       <img src="img/logo.png" alt="Logo Jireh">
       <h1>JIREH MOTOS</h1>
     </div>
-    <div class="header-right">Concessionária de motos novas e seminovas</div>
+    <div class="header-right">Concessionária motos de novas e seminovas</div>
   </header>
 
   <!-- FAIXA VERMELHA -->
