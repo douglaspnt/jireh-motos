@@ -1,240 +1,221 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jireh Motos</title>
-<meta name="description" content="DEUS PROVERÁ - Seu sonho em duas rodas está aqui • Concessionária Multimarcas - Rua Alferes Bonilha, 210 - São Bernardo do Campo, SP">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* RESET E GERAL */
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif;scroll-behavior:smooth;}
-body{background:#000;color:#fff;overflow-x:hidden;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JIREH MOTOS</title>
+  <meta name="description" content="Seu sonho em duas rodas está aqui - Concessionária de novas e seminovas.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-/* CABEÇALHO FIXO */
-header{
-  position:fixed;top:0;left:0;width:100%;height:80px;
-  background:rgba(0,0,0,0.9);
-  display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:1000;
-  box-shadow:0 2px 8px rgba(0,0,0,0.5);
-}
-.logo-header{display:flex;align-items:center;gap:15px;}
-.logo-header img{height:60px;}
-.logo-header h1{color:#fff;font-size:2rem;}
+  <style>
+    /* GERAL */
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
+    body {background:#000; color:#fff; overflow-x:hidden;}
 
-/* MENU BOTÃO (HAMBURGUER) */
-.menu-btn{
-  display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;z-index:1001;
-}
-.menu-btn span.bar{
-  display:block;width:35px;height:4px;background:#fff;border-radius:2px;transition:0.3s;
-}
-.menu-btn span.bar1.active{transform:rotate(45deg) translate(6px,6px);}
-.menu-btn span.bar2.active{opacity:0;}
-.menu-btn span.bar3.active{transform:rotate(-45deg) translate(7px,-7px);}
-.menu-btn .menu-text{color:#fff;font-size:1.5rem;font-weight:bold;}
+    /* CABEÇALHO */
+    header {
+      width:100%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 30px;
+    }
+    .logo-area {
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+    .logo-area img {
+      height:60px;
+    }
+    .logo-area h1 {
+      font-family:'Bebas Neue', sans-serif;
+      font-size:2.8rem;
+      color:#000;
+      letter-spacing:2px;
+    }
+    .header-right {
+      font-size:1.2rem;
+      color:#bbb;
+      font-weight:500;
+    }
 
-/* MENU LATERAL */
-.sidebar{
-  position:fixed;top:0;right:-250px;width:250px;height:100%;background:#111;
-  padding:2rem;transition:0.4s;z-index:1000;display:flex;flex-direction:column;gap:2rem;
-}
-.sidebar.active{right:0;}
-.sidebar a.menu-item{
-  color:#fff;font-weight:bold;font-size:1.3rem;text-decoration:none;display:flex;align-items:center;gap:10px;transition:0.3s;
-}
-.sidebar a.menu-item i{transition: transform 0.3s;}
-.sidebar a.menu-item:hover{color:#00e676;transform:scale(1.05);}
-.sidebar a.menu-item:hover i{transform:scale(1.2) rotate(5deg);}
+    /* FAIXA VERMELHA */
+    .faixa-vermelha {
+      width:100%;
+      height:6px;
+      background:#d40000;
+    }
 
-/* CARROSSEL 100% LARGURA */
-.carousel {
-  margin-top:80px;
-  width:100%;        /* agora ocupa toda a largura da tela */
-  height:70vh;
-  border-radius:15px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 10px 25px rgba(0,0,0,0.5);
-  background:#000;
-}
+    /* CARROSSEL */
+    .carousel {
+      position:relative;
+      width:100%;
+      height:70vh;
+      overflow:hidden;
+    }
+    .carousel img {
+      position:absolute;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1s ease-in-out;
+    }
+    .carousel img.active {
+      opacity:1;
+    }
 
-.carousel img {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  opacity:0;
-  transition:opacity 1s ease-in-out;
-  object-fit:cover;   /* preenche container no desktop */
-  object-position:center;
-}
+    /* FRASE ACIMA DO SAIBA MAIS */
+    .frase {
+      text-align:center;
+      font-size:1.8rem;
+      color:#fff;
+      margin:40px 0 15px 0;
+      font-weight:600;
+      font-style:italic;
+    }
 
-.carousel img.active { opacity:1; }
+    /* FAIXA SAIBA MAIS */
+    .saiba-mais {
+      width:90%;
+      margin:0 auto;
+      background:#d40000;
+      text-align:center;
+      padding:20px;
+      border-radius:8px;
+      transition:0.3s;
+    }
+    .saiba-mais a {
+      text-decoration:none;
+      color:#fff;
+      font-size:1.8rem;
+      font-weight:700;
+    }
+    .saiba-mais:hover {
+      transform:scale(1.05);
+      box-shadow:0 0 20px rgba(255,0,0,0.4);
+    }
 
-/* RESPONSIVO: mobile */
-@media (max-width:900px) {
-  .carousel { height:60vh; }
-  .carousel img {
-    object-fit:contain; /* mostra a imagem inteira no celular */
-    background:#000;
-  }
-}
+    /* BOTÃO MENU */
+    .menu-container {
+      display:flex;
+      justify-content:center;
+      margin:40px 0;
+    }
+    .menu-btn {
+      background:#fff;
+      color:#000;
+      border:none;
+      padding:15px 40px;
+      font-size:1.4rem;
+      font-weight:bold;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .menu-btn:hover {
+      background:#d40000;
+      color:#fff;
+    }
 
-/* INFO ABAIXO CARROSSEL */
-.info-section{text-align:center;padding:3rem 1rem;}
-.info-section .highlight{
-  display:flex;align-items:center;justify-content:center;gap:15px;font-size:2.5rem;font-weight:bold;color:#fff;
-}
-.info-section .highlight img{height:50px;}
-.info-section p{font-size:1.3rem;margin:0.5rem 0;}
+    /* MENU LATERAL */
+    .sidebar {
+      position:fixed;
+      top:0;
+      right:-250px;
+      width:250px;
+      height:100%;
+      background:#111;
+      padding:2rem;
+      transition:0.4s;
+      z-index:1000;
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+    .sidebar.active {right:0;}
+    .sidebar a {
+      color:#fff;
+      font-size:1.3rem;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+    .sidebar a:hover {
+      color:#d40000;
+      transform:scale(1.05);
+    }
 
-/* WHATSAPP FLUTUANTE */
-.whatsapp-float{
-  position:fixed;bottom:30px;right:30px;width:70px;height:70px;border-radius:50%;
-  background:#25D366;color:#fff;font-size:2.5rem;display:flex;align-items:center;justify-content:center;z-index:1000;transition:0.3s;
-}
-.whatsapp-float:hover{transform:scale(1.2);box-shadow:0 12px 25px rgba(0,0,0,0.4);}
-.whatsapp-float span.tooltip{
-  position:absolute;bottom:90px;right:0;background:#25D366;color:#fff;padding:5px 10px;border-radius:5px;font-size:1rem;opacity:0;transition:0.3s;
-  white-space:nowrap;
-}
-.whatsapp-float:hover span.tooltip{opacity:1;}
-
-/* RESPONSIVO MENU E INFO */
-@media(max-width:900px){.sidebar{width:200px;}.info-section .highlight{flex-direction:column;gap:10px;}}
-</style>
+    @media(max-width:900px){
+      header {flex-direction:column; text-align:center;}
+      .header-right {margin-top:5px;}
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- CABEÇALHO -->
-<header>
-  <div class="logo-header">
-    <img src="img/logo.jpg" alt="Logo Jireh">
-    <h1>Jireh Motos</h1>
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo-area">
+      <img src="img/logo.png" alt="Logo Jireh">
+      <h1>JIREH MOTOS</h1>
+    </div>
+    <div class="header-right">Concessionária de novas e seminovas</div>
+  </header>
+
+  <!-- FAIXA VERMELHA -->
+  <div class="faixa-vermelha"></div>
+
+  <!-- CARROSSEL -->
+  <div class="carousel" id="carousel">
+    <img src="img/img1.png" class="active" alt="Moto 1">
+    <img src="img/img2.png" alt="Moto 2">
+    <img src="img/img3.png" alt="Moto 3">
   </div>
-  <div class="menu-btn" id="menuBtn">
-    <span class="bar bar1"></span>
-    <span class="bar bar2"></span>
-    <span class="bar bar3"></span>
-    <span class="menu-text">MENU</span>
+
+  <!-- FRASE -->
+  <div class="frase">Seu sonho em duas rodas está aqui</div>
+
+  <!-- SAIBA MAIS -->
+  <div class="saiba-mais">
+    <a href="https://wa.me/5511989488282" target="_blank">SAIBA MAIS</a>
   </div>
-</header>
 
-<!-- MENU LATERAL -->
-<div class="sidebar" id="sidebar">
-  <a href="index.html" class="menu-item"><i class="fas fa-motorcycle"></i> Início</a>
-  <a href="servicos.html" class="menu-item"><i class="fas fa-tools"></i> Serviços</a>
-  <a href="contato.html" class="menu-item"><i class="fas fa-phone-alt"></i> Contato</a>
-</div>
-
-<!-- CARROSSEL -->
-<div class="carousel" id="carousel">
-  <img src="img/img1.jpg" alt="Foto 1" class="active">
-  <img src="img/img2.jpg" alt="Foto 2">
-  <img src="img/img3.jpg" alt="Foto 3">
-</div>
-
-<!-- INFORMAÇÕES -->
-<div class="info-section">
-  <div class="highlight">
-    <img src="img/logo.jpg" alt="Logo Jireh">
-    <span>DEUS PROVERÁ</span>
+  <!-- BOTÃO MENU -->
+  <div class="menu-container">
+    <button class="menu-btn" id="menuBtn">MENU</button>
   </div>
-  <p>Seu sonho em duas rodas está aqui • Concessionária Multimarcas</p>
-  <p>Rua Alferes Bonilha, 210 -Centro- São Bernardo do Campo, SP</p>
-</div>
 
-<!-- WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/5511989488282" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="servicos.html"><i class="fas fa-tools"></i> Serviços</a>
+    <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
+  </div>
 
-<script>
-// -----------------------------
-// MENU LATERAL
-// -----------------------------
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.getElementById('sidebar');
+  <script>
+    // CARROSSEL
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+    setInterval(() => {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+    }, 3000);
 
-if (menuBtn && sidebar) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    sidebar.classList.toggle('active');
-    menuBtn.querySelector('.bar1')?.classList.toggle('active');
-    menuBtn.querySelector('.bar2')?.classList.toggle('active');
-    menuBtn.querySelector('.bar3')?.classList.toggle('active');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-      sidebar.classList.remove('active');
-      menuBtn.querySelector('.bar1')?.classList.remove('active');
-      menuBtn.querySelector('.bar2')?.classList.remove('active');
-      menuBtn.querySelector('.bar3')?.classList.remove('active');
-    }
-  });
-}
-
-// -----------------------------
-// CARROSSEL ADAPTATIVO (fade)
-// -----------------------------
-const carousel = document.getElementById('carousel');
-if (carousel) {
-  let currentIndex = 0;
-  const slides = carousel.querySelectorAll('img');
-
-  slides.forEach((s) => s.classList.remove('active'));
-  slides[0].classList.add('active');
-
-  setInterval(() => {
-    slides[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % slides.length;
-    slides[currentIndex].classList.add('active');
-  }, 3000);
-}
-
-// -----------------------------
-// FORMULÁRIO DE CONTATO
-// -----------------------------
-const form = document.getElementById('contactForm');
-const successMessage = document.getElementById('successMessage');
-
-if (form) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    const url = "https://formspree.io/f/SEU_CODIGO"; // substitua com seu endpoint real
-    if (url.includes("SEU_CODIGO")) {
-      alert("Formulário ainda não configurado. Adicione o código Formspree no arquivo js/script.js.");
-      return;
-    }
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        form.reset();
-        if (successMessage) successMessage.style.display = "block";
-      } else {
-        alert("Ocorreu um erro. Tente novamente.");
-      }
-
-    } catch (err) {
-      alert("Ocorreu um erro. Verifique sua conexão.");
-      console.error(err);
-    }
-  });
-}
-</script>
+    // MENU LATERAL
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
