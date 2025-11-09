@@ -11,7 +11,7 @@
   <style>
     /* RESET E GERAL */
     * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
-    body {background:#000; color:#fff; overflow-x:hidden; height:100vh;}
+    body {background:#000; color:#fff; overflow-x:hidden; min-height:100vh;}
 
     /* CABEÇALHO FIXO */
     header {
@@ -59,10 +59,13 @@
     }
     .carousel img {
       position:absolute;
-      top:0; left:0;
+      top:50%;
+      left:50%;
       width:100%;
-      height:100%;
-      object-fit:cover;
+      height:auto;
+      max-height:100%;
+      transform:translate(-50%, -50%);
+      object-fit:contain;
       opacity:0;
       transition:opacity 1s ease-in-out;
     }
@@ -90,7 +93,7 @@
     /* CONTEÚDO SOBRE O CARROSSEL */
     .overlay {
       position:absolute;
-      bottom:50px;
+      bottom:80px; /* Ajustado para ficar mais acima */
       width:100%;
       text-align:center;
       display:flex;
@@ -111,12 +114,13 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 
-    /* BOTÃO SAIBA MAIS - FAIXA LARGA */
+    /* BOTÃO SAIBA MAIS - FAIXA LARGA REDUZIDA */
     .saiba-mais {
-      width:95%;
+      width:60%;
+      max-width:220px;
       background:linear-gradient(90deg, #d40000, #ff4c4c);
       text-align:center;
-      padding:20px 0;
+      padding:15px 0;
       border-radius:10px;
       transition:0.3s;
       box-shadow:0 5px 15px rgba(0,0,0,0.5);
@@ -125,7 +129,7 @@
     .saiba-mais a {
       text-decoration:none;
       color:#fff;
-      font-size:1.8rem;
+      font-size:1.4rem;
       font-weight:700;
     }
     .saiba-mais:hover {
@@ -138,8 +142,8 @@
       background:#fff;
       color:#000;
       border:none;
-      padding:20px 60px;
-      font-size:1.6rem;
+      padding:15px 40px;
+      font-size:1.2rem;
       font-weight:bold;
       border-radius:12px;
       cursor:pointer;
@@ -177,30 +181,15 @@
 
     /* RESPONSIVO */
     @media(max-width:900px){
-      header {
-        flex-direction:row; /* mantém ao lado do logo */
-        justify-content:space-between;
-        flex-wrap:wrap;
-        padding:10px 15px;
-      }
-      .header-right {
-        font-size:1rem;
-        margin-top:0;
-      }
+      header {flex-direction:row; justify-content:space-between; flex-wrap:wrap; padding:10px 15px;}
+      .header-right {font-size:1rem; margin-top:0;}
     }
     @media(max-width:600px){
-      .saiba-mais {
-        width:90%;
-        padding:15px 0;
-      }
-      .saiba-mais a {font-size:1.4rem;}
-      .menu-btn {
-        padding:12px 30px;
-        font-size:1.2rem;
-      }
+      .saiba-mais {width:90%; padding:12px 0;}
+      .saiba-mais a {font-size:1.2rem;}
+      .menu-btn {padding:10px 25px; font-size:1rem;}
       .arrow {font-size:2rem; padding:8px;}
     }
-
   </style>
 </head>
 <body>
@@ -269,7 +258,18 @@
     // MENU LATERAL
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
-    menuBtn.addEventListener('click', () => { sidebar.classList.toggle('active'); });
+
+    menuBtn.addEventListener('click', e => {
+      e.stopPropagation(); // previne fechar imediatamente
+      sidebar.classList.toggle('active');
+    });
+
+    // FECHAR MENU AO CLICAR FORA
+    document.addEventListener('click', e => {
+      if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){
+        sidebar.classList.remove('active');
+      }
+    });
   </script>
 
 </body>

@@ -11,6 +11,7 @@ body {
   background: #000;
   color: #fff;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* Cabeçalho fixo */
@@ -43,56 +44,45 @@ header {
   font-size: 2rem;
 }
 
+.header-right {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 /* Menu botão (hamburguer) */
 .menu-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
   cursor: pointer;
   z-index: 1001;
-}
-
-.menu-btn span.bar {
-  display: block;
-  width: 35px;
-  height: 4px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
   background: #fff;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-.menu-btn span.bar1.active {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-.menu-btn span.bar2.active {
-  opacity: 0;
-}
-.menu-btn span.bar3.active {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
-
-.menu-btn .menu-text {
-  color: #fff;
-  font-size: 1.5rem;
+  color: #000;
+  border: none;
   font-weight: bold;
-  text-shadow: 0 0 12px #fff;
 }
 
-/* Menu lateral */
+.menu-btn:hover {
+  background: #d40000;
+  color: #fff;
+}
+
+/* Menu lateral direito */
 .sidebar {
   position: fixed;
-  top: 0;
-  right: -250px;
-  width: 250px;
-  height: 100%;
+  top: 15%;
+  right: -220px;
+  width: 220px;
   background: #111;
-  padding: 2rem;
+  padding: 1.5rem;
+  border-radius: 10px 0 0 10px;
   transition: 0.4s;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .sidebar.active {
@@ -102,7 +92,7 @@ header {
 .sidebar a.menu-item {
   color: #fff;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -127,10 +117,10 @@ header {
 .carousel {
   margin-top: 80px;
   width: 100%;
-  height: 60vh;
+  height: 80vh;
   overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  position: relative;
+  background: transparent;
 }
 
 .carousel img {
@@ -138,192 +128,66 @@ header {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s;
-}
-
-/* Seção de informações */
-.info-section {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.info-section .highlight {
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-shadow: 0 0 12px #fff;
-  margin-bottom: 1rem;
-}
-
-.info-section p {
-  font-size: 1.3rem;
-  margin: 0.5rem 0;
-}
-
-/* Serviços */
-.services-section {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.services-section h2 {
-  color: #fff;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  text-shadow: 0 0 12px #fff;
-}
-
-.services-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3rem;
-}
-
-.service-card {
-  background: #111;
-  color: #fff;
-  padding: 2rem;
-  border-radius: 15px;
-  min-width: 220px;
-  font-weight: bold;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.service-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 25px rgba(255,255,255,0.4);
-}
-
-/* Contato */
-.contact-section {
-  text-align: center;
-  padding: 4rem 1rem;
-}
-
-.contact-section h2 {
-  font-size: 3rem;
-  margin-bottom: 5rem;
-  color: #fff;
-  text-shadow: 0 0 15px #fff;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4rem;
-  margin-bottom: 5rem;
-}
-
-.contact-row {
-  display: flex;
-  gap: 4rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.contact-links a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.8rem;
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.contact-links a:hover {
-  transform: scale(1.15);
-  text-shadow: 0 0 12px #fff;
-}
-
-/* Formulário */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-}
-
-.input-group {
-  position: relative;
-}
-
-.input-group i {
   position: absolute;
   top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  color: #fff;
-  font-size: 1.2rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-input, textarea {
-  padding: 1.2rem 1rem 1.2rem 3rem;
-  border-radius: 12px;
-  border: none;
-  background: #111;
+.carousel img.active {
+  opacity: 1;
+}
+
+/* Overlay com frase, saiba mais e menu */
+.overlay {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+  z-index: 5;
+}
+
+.frase {
+  font-size: 2rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.saiba-mais {
+  width: 50%;
+  max-width: 250px;
+  background: linear-gradient(90deg, #d40000, #ff4c4c);
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.saiba-mais a {
+  text-decoration: none;
   color: #fff;
   font-size: 1.1rem;
-  outline: none;
-  transition: 0.3s;
+  font-weight: 700;
 }
 
-input:focus, textarea:focus {
-  box-shadow: 0 0 20px #fff;
-  transform: scale(1.02);
-}
-
-button {
-  padding: 1.2rem;
-  background: #fff;
-  color: #000;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ddd;
-  transform: translateY(-2px);
-}
-
-/* WhatsApp flutuante */
-.whatsapp-float {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #25D366;
-  color: #fff;
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: 0.3s;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.2);
+.saiba-mais:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255,0,0,0.7);
 }
 
 /* Responsivo */
 @media(max-width: 900px) {
-  .services-cards { flex-direction: column; gap: 2rem; }
-  .contact-row { gap: 2rem; }
-  .contact-links a { font-size: 1.5rem; }
-  .contact-section h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+  .overlay { bottom: 5%; gap: 12px; }
+  .frase { font-size: 1.5rem; }
+  .saiba-mais { width: 60%; padding: 8px 0; }
+  .menu-btn { padding: 6px 15px; font-size: 0.9rem; }
 }
-
