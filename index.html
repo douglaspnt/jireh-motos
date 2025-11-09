@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* RESET E GERAL */
     * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
     body {background:#000; color:#fff; overflow-x:hidden; height:100vh;}
 
@@ -24,21 +25,28 @@
       justify-content:space-between;
       padding:10px 30px;
       z-index:1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition:all 0.3s ease;
     }
     .logo-area {display:flex; align-items:center; gap:15px;}
     .logo-area img {height:60px;}
     .logo-area h1 {font-family:'Bebas Neue', sans-serif; font-size:2.8rem; color:#000; letter-spacing:2px;}
-    .header-right {font-size:1.2rem; color:#bbb; font-weight:500;}
-    
+    .header-right {font-size:1.2rem; color:#555; font-weight:500;}
+
     /* FAIXA VERMELHA */
     .faixa-vermelha {
       width:100%;
       height:6px;
-      background:#d40000;
+      background:linear-gradient(90deg, #d40000, #ff4c4c);
       position:fixed;
       top:76px;
       left:0;
       z-index:999;
+      animation: moveGradient 5s linear infinite;
+    }
+    @keyframes moveGradient {
+      0%{background-position:0% 0%;}
+      100%{background-position:100% 0%;}
     }
 
     /* CARROSSEL */
@@ -106,8 +114,7 @@
     /* BOTÃO SAIBA MAIS - FAIXA LARGA */
     .saiba-mais {
       width:95%;
-      max-width:none;
-      background:#d40000;
+      background:linear-gradient(90deg, #d40000, #ff4c4c);
       text-align:center;
       padding:20px 0;
       border-radius:10px;
@@ -126,7 +133,7 @@
       box-shadow:0 0 30px rgba(255,0,0,0.7);
     }
 
-    /* BOTÃO MENU MAIOR */
+    /* BOTÃO MENU */
     .menu-btn {
       background:#fff;
       color:#000;
@@ -141,10 +148,10 @@
     }
     .menu-btn:hover {background:#d40000; color:#fff; box-shadow:0 0 30px rgba(255,0,0,0.7);}
 
-    /* MENU LATERAL DIREITO, PEQUENO, MAIS PARA CIMA */
+    /* MENU LATERAL DIREITO */
     .sidebar {
       position:fixed;
-      top:20%;
+      top:15%;
       right:-220px;
       width:220px;
       background:#111;
@@ -168,7 +175,19 @@
     }
     .sidebar a:hover {color:#d40000; transform:scale(1.05);}
 
-    /* RESPONSIVO PARA CELULAR */
+    /* RESPONSIVO */
+    @media(max-width:900px){
+      header {
+        flex-direction:row; /* mantém ao lado do logo */
+        justify-content:space-between;
+        flex-wrap:wrap;
+        padding:10px 15px;
+      }
+      .header-right {
+        font-size:1rem;
+        margin-top:0;
+      }
+    }
     @media(max-width:600px){
       .saiba-mais {
         width:90%;
@@ -182,13 +201,8 @@
       .arrow {font-size:2rem; padding:8px;}
     }
 
-    @media(max-width:900px){
-      header {flex-direction:column; text-align:center;}
-      .header-right {margin-top:5px;}
-    }
   </style>
 </head>
-
 <body>
 
   <!-- CABEÇALHO FIXO -->
@@ -197,7 +211,7 @@
       <img src="img/logo.png" alt="Logo Jireh">
       <h1>JIREH MOTOS</h1>
     </div>
-    <div class="header-right">Concessionária de motos novas e seminovas</div>
+    <div class="header-right">Concessionária motos de novas e seminovas</div>
   </header>
 
   <!-- FAIXA VERMELHA -->
@@ -231,6 +245,7 @@
   </div>
 
   <script>
+    // CARROSSEL
     const slides = document.querySelectorAll('.carousel img');
     let currentIndex = 0;
     let interval = setInterval(nextSlide, 3000);
@@ -239,30 +254,17 @@
       slides.forEach(slide => slide.classList.remove('active'));
       slides[index].classList.add('active');
     }
-
     function nextSlide(){
       currentIndex = (currentIndex + 1) % slides.length;
       showSlide(currentIndex);
     }
-
     function prevSlide(){
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       showSlide(currentIndex);
     }
-
-    document.getElementById('next').addEventListener('click', () => {
-      nextSlide();
-      resetInterval();
-    });
-    document.getElementById('prev').addEventListener('click', () => {
-      prevSlide();
-      resetInterval();
-    });
-
-    function resetInterval(){
-      clearInterval(interval);
-      interval = setInterval(nextSlide, 3000);
-    }
+    document.getElementById('next').addEventListener('click', () => { nextSlide(); resetInterval(); });
+    document.getElementById('prev').addEventListener('click', () => { prevSlide(); resetInterval(); });
+    function resetInterval(){ clearInterval(interval); interval = setInterval(nextSlide, 3000); }
 
     // MENU LATERAL
     const menuBtn = document.getElementById('menuBtn');
