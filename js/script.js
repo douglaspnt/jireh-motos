@@ -1,102 +1,56 @@
-// ==============================
-// MENU LATERAL
-// ==============================
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.getElementById('sidebar');
+const menuButton = document.querySelector("[data-menu-button]");
+const mobileMenu = document.querySelector("[data-mobile-menu]");
 
-if (menuBtn && sidebar) {
-  menuBtn.addEventListener('click', e => {
-    e.stopPropagation(); // evita fechar imediatamente
-    sidebar.classList.toggle('active');
+if (menuButton && mobileMenu) {
+  menuButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const isOpen = mobileMenu.classList.toggle("active");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
   });
 
-  document.addEventListener('click', e => {
-    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-      sidebar.classList.remove('active');
+  document.addEventListener("click", (event) => {
+    if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      mobileMenu.classList.remove("active");
+      menuButton.setAttribute("aria-expanded", "false");
     }
   });
 }
 
-// ==============================
-// CARROSSEL RESPONSIVO FUNCIONAL
-// ==============================
-const carousel = document.getElementById('carousel');
-const slides = carousel.querySelectorAll('img'); // ajustado para suas imagens atuais
-let currentIndex = 0;
+const slides = Array.from(document.querySelectorAll("[data-slide]"));
+const nextButton = document.querySelector("[data-next-slide]");
+const prevButton = document.querySelector("[data-prev-slide]");
+let currentSlide = 0;
+let slideTimer;
 
 function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
+  if (!slides.length) return;
+  currentSlide = (index + slides.length) % slides.length;
+  slides.forEach((slide, slideIndex) => {
+    slide.classList.toggle("active", slideIndex === currentSlide);
   });
 }
 
-// Ajusta altura do carrossel para caber na tela sem cortar imagens
-function adjustHeight() {
-  const img = slides[currentIndex];
-  if (!img) return;
-
-  if (img.complete) {
-    let imgHeight = img.naturalHeight * (carousel.offsetWidth / img.naturalWidth);
-    let maxHeight = window.innerHeight * 0.9; // 90% da altura da tela
-    carousel.style.height = Math.min(imgHeight, maxHeight) + 'px';
-  } else {
-    img.addEventListener('load', () => {
-      let imgHeight = img.naturalHeight * (carousel.offsetWidth / img.naturalWidth);
-      let maxHeight = window.innerHeight * 0.9;
-      carousel.style.height = Math.min(imgHeight, maxHeight) + 'px';
-    });
-  }
+function startCarousel() {
+  if (slides.length < 2) return;
+  window.clearInterval(slideTimer);
+  slideTimer = window.setInterval(() => showSlide(currentSlide + 1), 4000);
 }
 
-// Eventos iniciais
-window.addEventListener('load', () => {
-  adjustHeight();
-  showSlide(currentIndex);
-});
+if (slides.length) {
+  showSlide(0);
+  startCarousel();
+}
 
-window.addEventListener('resize', adjustHeight);
-
-// Troca automática de slides
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  showSlide(currentIndex);
-  adjustHeight();
-}, 3000);
-
-// Setas do carrossel (se quiser manter setas)
-const nextBtn = document.getElementById('next');
-const prevBtn = document.getElementById('prev');
-
-if (nextBtn && prevBtn) {
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-    adjustHeight();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    showSlide(currentIndex);
-    adjustHeight();
+if (nextButton) {
+  nextButton.addEventListener("click", () => {
+    showSlide(currentSlide + 1);
+    startCarousel();
   });
 }
 
-// ==============================
-// FORMULÁRIO DE CONTATO
-// ==============================
-const form = document.getElementById('contactForm');
-const successMessage = document.getElementById('successMessage');
-
-if (form && successMessage) {
-  successMessage.style.display = 'none';
-
-  form.addEventListener('submit', e => {
-    e.preventDefault(); // evita envio real
-    successMessage.style.display = 'block';
-    form.reset();
-    setTimeout(() => {
-      successMessage.style.display = 'none';
-    }, 5000);
+if (prevButton) {
+  prevButton.addEventListener("click", () => {
+    showSlide(currentSlide - 1);
+    startCarousel();
   });
 }
-
