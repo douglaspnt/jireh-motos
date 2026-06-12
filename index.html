@@ -1,370 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JIREH MOTOS</title>
-  <meta name="description" content="Seu sonho em duas rodas está aqui - Concessionária de motos novas e seminovas.">
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      z-index: 1100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      flex-wrap: wrap;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-area img {
-      height: 60px;
-      width: 60px;
-    }
-
-    .logo-area h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.4rem;
-      color: #000;
-      letter-spacing: 3px;
-      white-space: nowrap;
-    }
-
-    .header-right {
-      font-size: 1rem;
-      color: #555;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    /* FAIXA VERMELHA (corrigida) */
-    .faixa-vermelha {
-      position: fixed;
-      top: 82px; /* ajustado: logo abaixo do header */
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, #d40000, #ff4c4c);
-      background-size: 200% auto;
-      animation: brilhoFaixa 4s linear infinite;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-      z-index: 1050;
-    }
-
-    @keyframes brilhoFaixa {
-      0% {background-position: 0% 0%;}
-      100% {background-position: 200% 0%;}
-    }
-
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 88px);
-      margin-top: 88px; /* altura exata do header + faixa */
-      overflow: hidden;
-      z-index: 1;
-      background: #000;
-    }
-
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .carousel img.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    @media (min-width: 1024px) {
-      .carousel img {
-        object-fit: contain;
-        background: #000;
-      }
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.5rem;
-      color: #fff;
-      background: rgba(0,0,0,0.4);
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      transition: background 0.3s;
-      user-select: none;
-    }
-
-    .arrow:hover {
-      background: rgba(212,0,0,0.8);
-    }
-
-    .arrow.left { left: 15px; }
-    .arrow.right { right: 15px; }
-
-    .overlay {
-      position: absolute;
-      bottom: 80px;
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 0 15px;
-      animation: fadeInUp 1.5s ease forwards;
-      z-index: 20;
-    }
-
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(30px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    .frase {
-      font-size: 1.6rem;
-      font-weight: 600;
-      font-style: italic;
-      color: #fff;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      line-height: 1.3;
-    }
-
-    .saiba-mais {
-      background: linear-gradient(90deg, #d40000, #ff4c4c);
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .saiba-mais a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: 700;
-      display: block;
-      user-select: none;
-    }
-
-    .saiba-mais:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(255,0,0,0.7);
-    }
-
-    .menu-btn {
-      margin-top: 10px;
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 15px 50px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-      user-select: none;
-    }
-
-    .menu-btn:hover {
-      background: #d40000;
-      color: #fff;
-      box-shadow: 0 0 30px rgba(255,0,0,0.7);
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 15%;
-      right: -240px;
-      width: 240px;
-      background: #111;
-      padding: 1.5rem;
-      border-radius: 10px 0 0 10px;
-      transition: right 0.4s ease;
-      z-index: 1200;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-
-    .sidebar.active { right: 0; }
-
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.2rem;
-      transition: transform 0.3s, color 0.3s;
-    }
-
-    .sidebar a:hover {
-      color: #d40000;
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 10px 15px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .logo-area {
-        flex-direction: row;
-        gap: 10px;
-        justify-content: center;
-      }
-
-      .logo-area img {
-        height: 55px;
-        width: 55px;
-      }
-
-      .logo-area h1 {
-        font-size: 2.2rem;
-      }
-
-      .header-right {
-        display: block;
-        font-size: 0.9rem;
-        color: #000;
-        margin-top: 5px;
-        white-space: normal;
-        text-align: center;
-        line-height: 1.2;
-        max-width: 90%;
-      }
-
-      .faixa-vermelha {
-        top: 110px; /* ajuste no mobile */
-      }
-
-      .carousel {
-        margin-top: 116px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo-area">
-      <img src="img/logo.png" alt="Logo JIREH MOTOS" />
-      <h1>JIREH MOTOS</h1>
-    </div>
-    <div class="header-right">Concessionária de motos novas e seminovas</div>
-  </header>
-
-  <div class="faixa-vermelha"></div>              
-
-  <div class="carousel" id="carousel">
-    <img src="img/img1.jpeg" alt="Moto 1" class="active" />
-    <img src="img/img2.jpeg" alt="Moto 2" />
-    <img src="img/img3.jpeg" alt="Moto 3" />
-    <img src="img/img4.jpeg" alt="Moto 4" /> 
-    <img src="img/img5.jpeg" alt="Moto 5" />
-    <img src="img/img6.jpeg" alt="Moto 6" />
-    <img src="img/img7.jpeg" alt="Moto 7" />
-
-
-    <div class="arrow left" id="prev"><i class="fas fa-chevron-left"></i></div>
-    <div class="arrow right" id="next"><i class="fas fa-chevron-right"></i></div>
-
-    <div class="overlay">
-      <div class="frase">Seu sonho em duas rodas está aqui</div>
-      <div class="saiba-mais">
-        <a href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer">SAIBA MAIS</a>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIREH MOTOS | Novas e seminovas</title>
+    <meta name="description" content="Seu sonho em duas rodas esta aqui. Concessionaria de motos novas e seminovas em Sao Paulo.">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="JIREH MOTOS">
+          <img src="img/logo.png" alt="Logo JIREH MOTOS">
+          <span>
+            <span class="brand-title">JIREH MOTOS</span>
+            <span class="brand-subtitle">Concessionaria de motos novas e seminovas</span>
+          </span>
+        </a>
+        <nav class="desktop-menu" aria-label="Menu principal">
+          <a href="index.html">Home</a>
+          <a href="servicos.html">Servicos</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+        <button class="menu-btn" type="button" data-menu-button aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fas fa-bars"></i> Menu
+        </button>
       </div>
-      <button class="menu-btn" id="menuBtn">MENU</button>
-    </div>
-  </div>
+      <div class="header-line"></div>
+    </header>
 
-  <nav class="sidebar" id="sidebar">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="servicos.html"><i class="fas fa-tools"></i> Serviços</a>
-    <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
-  </nav>
+    <nav class="mobile-menu" id="mobileMenu" data-mobile-menu aria-label="Menu mobile">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="servicos.html"><i class="fas fa-tools"></i> Servicos</a>
+      <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
+    </nav>
 
-  <script>
-    const slides = document.querySelectorAll('.carousel img');
-    let currentIndex = 0;
-    let interval = setInterval(nextSlide, 3000);
+    <main class="page">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="carousel" aria-hidden="true">
+          <img src="img/img1.jpeg" alt="" class="active" data-slide>
+          <img src="img/img2.jpeg" alt="" data-slide>
+          <img src="img/img3.jpeg" alt="" data-slide>
+          <img src="img/img4.jpeg" alt="" data-slide>
+          <img src="img/img5.jpeg" alt="" data-slide>
+          <img src="img/img6.jpeg" alt="" data-slide>
+          <img src="img/img7.jpeg" alt="" data-slide>
+        </div>
 
-    function showSlide(index) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[index].classList.add('active');
-    }
+        <div class="container hero-content">
+          <div class="hero-text">
+            <span class="eyebrow">Novas e seminovas</span>
+            <h1 id="hero-title">Seu sonho em duas rodas esta aqui</h1>
+            <p class="lead">
+              Escolha sua proxima moto com atendimento direto, opcoes revisadas,
+              compra facilitada e entrega pensada para voce sair rodando com confianca.
+            </p>
+            <div class="hero-actions">
+              <a class="button whatsapp" href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+              </a>
+              <a class="button light" href="servicos.html">Conhecer servicos</a>
+            </div>
+          </div>
+        </div>
 
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      showSlide(currentIndex);
-    }
+        <div class="carousel-controls" aria-label="Controles do carrossel">
+          <button class="arrow" type="button" data-prev-slide aria-label="Imagem anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="arrow" type="button" data-next-slide aria-label="Proxima imagem">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
 
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      showSlide(currentIndex);
-    }
+      <section class="section" aria-labelledby="destaques-title">
+        <div class="container">
+          <div class="section-title">
+            <h2 id="destaques-title">Motos selecionadas para todos os estilos</h2>
+            <p>Uma vitrine mais clara ajuda voce a comparar, se interessar e chamar a loja sem perder tempo.</p>
+          </div>
 
-    document.getElementById('next').addEventListener('click', () => { nextSlide(); resetInterval(); });
-    document.getElementById('prev').addEventListener('click', () => { prevSlide(); resetInterval(); });
+          <div class="cards">
+            <article class="card bike-card">
+              <figure><img src="img/img1.jpeg" alt="Moto em destaque"></figure>
+              <div class="card-body">
+                <h3>Seminovas revisadas</h3>
+                <p>Modelos avaliados para voce comprar com mais seguranca.</p>
+                <div class="tags">
+                  <span class="tag">Revisada</span>
+                  <span class="tag">Pronta entrega</span>
+                </div>
+              </div>
+            </article>
+            <article class="card bike-card">
+              <figure><img src="img/img2.jpeg" alt="Moto disponivel na loja"></figure>
+              <div class="card-body">
+                <h3>Opcoes urbanas</h3>
+                <p>Agilidade, economia e praticidade para o dia a dia.</p>
+                <div class="tags">
+                  <span class="tag">Economica</span>
+                  <span class="tag">Uso diario</span>
+                </div>
+              </div>
+            </article>
+            <article class="card bike-card">
+              <figure><img src="img/img3.jpeg" alt="Moto exposta"></figure>
+              <div class="card-body">
+                <h3>Atendimento personalizado</h3>
+                <p>Converse com a equipe e encontre a moto certa para seu perfil.</p>
+                <div class="tags">
+                  <span class="tag">WhatsApp</span>
+                  <span class="tag">Facilitado</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-    function resetInterval() {
-      clearInterval(interval);
-      interval = setInterval(nextSlide, 3000);
-    }
+      <section class="section alt">
+        <div class="container">
+          <div class="cta-band">
+            <div>
+              <h2>Quer receber as motos disponiveis agora?</h2>
+              <p>Chame a JIREH MOTOS pelo WhatsApp e fale direto com um vendedor.</p>
+            </div>
+            <a class="button whatsapp" href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Chamar agora
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    menuBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      sidebar.classList.toggle('active');
-    });
+    <a href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Falar pelo WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
 
-    document.addEventListener('click', e => {
-      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) sidebar.classList.remove('active');
-    });
-  </script>
-</body>
+    <footer class="footer">
+      <div class="container">
+        <strong>JIREH MOTOS</strong>
+        <span>Concessionaria de motos novas e seminovas</span>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
