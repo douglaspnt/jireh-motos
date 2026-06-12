@@ -1,230 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato - Jireh Motos</title>
-  <meta name="description" content="Contato Jireh Motos - envie sua mensagem, WhatsApp e redes sociais.">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="img/logo.jpg" type="image/jpg">
-
-  <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
-    body {background:#000; color:#fff; overflow-x:hidden; min-height:100vh;}
-
-    header {
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:10px 30px;
-      z-index:1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .logo-area {display:flex; align-items:center; gap:15px;}
-    .logo-area img {height:60px;}
-    .logo-area h1 {font-family:'Bebas Neue', sans-serif; font-size:2.8rem; color:#000; letter-spacing:2px;}
-
-    .faixa-vermelha {
-      width:100%;
-      height:6px;
-      background:linear-gradient(90deg, #d40000, #ff4c4c);
-      position:fixed;
-      top:76px;
-      left:0;
-      z-index:999;
-    }
-
-    .sidebar {
-      position:fixed;
-      top:15%;
-      right:-220px;
-      width:220px;
-      background:#111;
-      padding:1.5rem;
-      border-radius:10px 0 0 10px;
-      transition:0.4s;
-      z-index:1001;
-      display:flex;
-      flex-direction:column;
-      gap:1.5rem;
-    }
-    .sidebar.active {right:0;}
-    .sidebar a {color:#fff; font-size:1.2rem; text-decoration:none; font-weight:bold;}
-    .sidebar a:hover {color:#d40000;}
-
-    .menu-btn {
-      background:#fff;
-      color:#000;
-      border:none;
-      padding:15px 40px;
-      font-size:1.2rem;
-      font-weight:bold;
-      border-radius:12px;
-      cursor:pointer;
-    }
-
-    main {margin-top:100px;}
-    .contact-section {text-align:center; padding:4rem 1rem;}
-    .contact-section h2 {font-size:3rem; margin-bottom:3rem;}
-
-    .contact-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:2rem;
-      justify-content:center;
-      max-width:900px;
-      margin:0 auto 2rem;
-    }
-    .contact-row a {
-      flex:1;
-      min-width:250px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:0.5rem;
-      font-size:1.6rem;
-      color:#000;
-      text-decoration:none;
-      padding:1.5rem;
-      border-radius:12px;
-      background:#fff;
-    }
-
-    .contact-form {max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:1.5rem;}
-    .form-row {display:flex; gap:1rem; flex-wrap:wrap;}
-    .input-group {position:relative; flex:1;}
-    .input-group i {position:absolute; top:50%; left:15px; transform:translateY(-50%); color:#000;}
-    input, textarea {
-      width:100%;
-      padding:1.5rem 1rem 1.5rem 3rem;
-      border-radius:12px;
-      border:none;
-      background:#fff;
-      color:#000;
-      font-size:1.2rem;
-    }
-    textarea {min-height:150px;}
-
-    button {
-      padding:1.5rem;
-      background:#fff;
-      color:#000;
-      border:none;
-      border-radius:12px;
-      font-size:1.3rem;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .whatsapp-float {
-      position:fixed;
-      bottom:30px;
-      right:30px;
-      width:70px;
-      height:70px;
-      border-radius:50%;
-      background:#25D366;
-      color:#fff;
-      font-size:2.5rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:1000;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="logo-area">
-    <img src="img/logo.png" alt="Logo Jireh">
-    <h1>JIREH MOTOS</h1>
-  </div>
-  <button class="menu-btn" id="menuBtn">MENU</button>
-</header>
-
-<div class="faixa-vermelha"></div>
-
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="servicos.html"><i class="fas fa-tools"></i> Serviços</a>
-  <a href="contato.html"><i class="fas fa-phone-alt"></i> Contato</a>
-</div>
-
-<main>
-  <section class="contact-section">
-    <h2>Entre em Contato</h2>
-
-    <div class="contact-row">
-      <a href="https://wa.me/5511989488282" target="_blank"><i class="fab fa-whatsapp"></i> (11) 98948-8282</a>
-      <a href="https://wa.me/5511945017680" target="_blank"><i class="fab fa-whatsapp"></i> (11) 94501-7680</a>
-      <a href="https://www.instagram.com/jirehmotos1/" target="_blank"><i class="fab fa-instagram"></i> @jirehmotos1</a>
-    </div>
-
-<div class="contact-row">
-   <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Alferes+Bonilha+210,+São+Bernardo+do+Campo,+Brazil" target="_blank"> 
-    <i class="fas fa-map-marker-alt"></i> Rua Alferes Bonilha, 210 – São Bernardo do Campo </a> </div>
-
-
- <div class="contact-row">
-  <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Cupecê+3491,+Jardim+Prudência,+São+Paulo,+SP" target="_blank">
-    <i class="fas fa-map-marker-alt"></i> Av. Cupecê, 3491 - Jardim Prudência - SP
-  </a>
-</div>
-
-    <!-- FORMULÁRIO COM ENVIO REAL -->
-    <form class="contact-form"
-          action="https://formsubmit.co/jirehmotos0@gmail.com"
-          method="POST">
-
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_subject" value="Contato - Jireh Motos">
-      <input type="text" name="_honey" style="display:none">
-
-      <div class="form-row">
-        <div class="input-group"><i class="fa fa-user"></i><input type="text" name="Nome" placeholder="Seu nome" required></div>
-        <div class="input-group"><i class="fa fa-phone"></i><input type="tel" name="Telefone" placeholder="Telefone" required></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | JIREH MOTOS</title>
+    <meta name="description" content="Fale com a JIREH MOTOS por WhatsApp, Instagram, endereco ou formulario de contato.">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="JIREH MOTOS">
+          <img src="img/logo.png" alt="Logo JIREH MOTOS">
+          <span>
+            <span class="brand-title">JIREH MOTOS</span>
+            <span class="brand-subtitle">Concessionaria de motos novas e seminovas</span>
+          </span>
+        </a>
+        <nav class="desktop-menu" aria-label="Menu principal">
+          <a href="index.html">Home</a>
+          <a href="servicos.html">Servicos</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+        <button class="menu-btn" type="button" data-menu-button aria-expanded="false" aria-controls="mobileMenu"><i class="fas fa-bars"></i> Menu</button>
       </div>
+      <div class="header-line"></div>
+    </header>
 
-      <div class="form-row">
-        <div class="input-group"><i class="fa fa-envelope"></i><input type="email" name="Email" placeholder="Seu e-mail" required></div>
-      </div>
+    <nav class="mobile-menu" id="mobileMenu" data-mobile-menu aria-label="Menu mobile">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="servicos.html"><i class="fas fa-tools"></i> Servicos</a>
+      <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
+    </nav>
 
-      <div class="form-row">
-        <div class="input-group"><i class="fa fa-comment"></i><textarea name="Mensagem" placeholder="Sua mensagem" required></textarea></div>
-      </div>
+    <main class="page">
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Fale com a loja</span>
+          <h1>Entre em contato</h1>
+          <p class="lead">Chame pelo WhatsApp, veja nossos enderecos ou envie sua mensagem pelo formulario.</p>
+        </div>
+      </section>
 
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-</main>
+      <section class="section" aria-labelledby="contato-title">
+        <div class="container contact-grid">
+          <div>
+            <div class="section-title"><h2 id="contato-title">Atendimento direto</h2></div>
+            <div class="contact-list">
+              <a class="contact-card" href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i><span><strong>(11) 98948-8282</strong><p>WhatsApp principal</p></span></a>
+              <a class="contact-card" href="https://wa.me/5511945017680" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i><span><strong>(11) 94501-7680</strong><p>Segundo atendimento</p></span></a>
+              <a class="contact-card" href="https://www.instagram.com/jirehmotos1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span><strong>@jirehmotos1</strong><p>Acompanhe novidades no Instagram</p></span></a>
+              <a class="contact-card" href="https://www.google.com/maps/dir/?api=1&destination=Rua+Alferes+Bonilha+210,+Sao+Bernardo+do+Campo,+Brazil" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i><span><strong>Rua Alferes Bonilha, 210</strong><p>Sao Bernardo do Campo</p></span></a>
+              <a class="contact-card" href="https://www.google.com/maps/dir/?api=1&destination=Av.+Cupece+3491,+Jardim+Prudencia,+Sao+Paulo,+SP" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i><span><strong>Av. Cupece, 3491</strong><p>Jardim Prudencia - Sao Paulo</p></span></a>
+            </div>
+          </div>
 
-<a href="https://wa.me/5511989488282" target="_blank" class="whatsapp-float">
-  <i class="fab fa-whatsapp"></i>
-</a>
+          <form class="contact-form" action="https://formsubmit.co/jirehmotos0@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="Contato - Jireh Motos">
+            <input type="text" name="_honey" style="display:none">
+            <div class="form-row">
+              <div class="input-group"><i class="fa fa-user"></i><input type="text" name="Nome" placeholder="Seu nome" required></div>
+              <div class="input-group"><i class="fa fa-phone"></i><input type="tel" name="Telefone" placeholder="Telefone" required></div>
+            </div>
+            <div class="input-group"><i class="fa fa-envelope"></i><input type="email" name="Email" placeholder="Seu e-mail" required></div>
+            <div class="input-group"><i class="fa fa-comment"></i><textarea name="Mensagem" placeholder="Sua mensagem" required></textarea></div>
+            <button class="button" type="submit"><i class="fas fa-paper-plane"></i> Enviar mensagem</button>
+          </form>
+        </div>
+      </section>
+    </main>
 
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const sidebar = document.getElementById('sidebar');
-
-  menuBtn.addEventListener('click', e=>{
-    e.stopPropagation();
-    sidebar.classList.toggle('active');
-  });
-
-  document.addEventListener('click', e=>{
-    if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){
-      sidebar.classList.remove('active');
-    }
-  });
-</script>
-
-</body>
+    <a href="https://wa.me/5511989488282" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Falar pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <footer class="footer"><div class="container"><strong>JIREH MOTOS</strong><span>WhatsApp, Instagram e enderecos da loja</span></div></footer>
+    <script src="js/script.js"></script>
+  </body>
 </html>
