@@ -22,24 +22,26 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:10px 30px;
+      min-height:82px;
+      padding:10px clamp(14px, 4vw, 30px);
       z-index:1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      gap:12px;
     }
-    .logo-area {display:flex; align-items:center; gap:15px;}
-    .logo-area img {height:60px;}
-    .logo-area h1 {font-family:'Bebas Neue', sans-serif; font-size:2.8rem; color:#000; letter-spacing:2px;}
+    .logo-area {display:flex; align-items:center; gap:12px; min-width:0;}
+    .logo-area img {height:clamp(48px, 8vw, 60px); width:clamp(48px, 8vw, 60px); object-fit:contain;}
+    .logo-area h1 {font-family:'Bebas Neue', sans-serif; font-size:clamp(2rem, 6vw, 2.8rem); color:#000; letter-spacing:2px; white-space:nowrap;}
 
     .faixa-vermelha {
       width:100%; height:6px;
       background:linear-gradient(90deg, #d40000, #ff4c4c);
-      position:fixed; top:76px; left:0; z-index:999;
+      position:fixed; top:82px; left:0; z-index:999;
       animation: moveGradient 5s linear infinite;
     }
     @keyframes moveGradient {0%{background-position:0% 0%;} 100%{background-position:100% 0%;}}
 
     .sidebar {
-      position:fixed; top:15%; right:-220px; width:220px;
+      position:fixed; top:96px; right:min(-260px, -86vw); width:min(260px, 86vw);
       background:#111; padding:1.5rem; border-radius:10px 0 0 10px;
       transition:0.4s; z-index:1001;
       display:flex; flex-direction:column; gap:1.5rem; height:auto;
@@ -54,38 +56,40 @@
 
     .menu-btn {
       background:#fff; color:#000; border:none;
-      padding:15px 40px; font-size:1.2rem; font-weight:bold; border-radius:12px;
+      padding:12px clamp(22px, 6vw, 40px); font-size:clamp(0.95rem, 3vw, 1.2rem); font-weight:bold; border-radius:12px;
       cursor:pointer; transition:0.3s; box-shadow:0 5px 15px rgba(0,0,0,0.5);
     }
     .menu-btn:hover {background:#d40000; color:#fff; box-shadow:0 0 30px rgba(255,0,0,0.7);}
 
-    main {margin-top:100px;}
+    main {margin-top:88px;}
     .services-section {
       text-align:center; 
-      padding:6rem 1rem 6rem 1rem; /* aumentei espaçamento acima e abaixo */
+      padding:clamp(3rem, 9vw, 6rem) clamp(1rem, 4vw, 2rem);
     }
     .services-section h2 {
-      font-size:3rem;
-      margin-bottom:4rem; /* mais espaço abaixo do título */
+      font-size:clamp(2rem, 8vw, 3rem);
+      margin-bottom:clamp(2rem, 8vw, 4rem);
       color:#fff;
       text-shadow:0 0 15px #fff;
+      line-height:1.1;
     }
 
     .services-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem; /* maior espaçamento entre os cards */
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: clamp(1rem, 3vw, 2rem);
       width:100%;
-      padding:0 1rem;
+      max-width:1180px;
+      margin:0 auto;
     }
 
     .service-card {
       background: #fff;
       color: #000;
-      padding: 0.8rem;
-      border-radius: 12px;
+      padding: clamp(1rem, 3vw, 1.25rem);
+      border-radius: 8px;
       font-weight: bold;
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 3.2vw, 1.25rem);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -93,7 +97,9 @@
       gap: 0.5rem;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 12px #fff;
-      min-height:80px;
+      min-height:86px;
+      line-height:1.25;
+      overflow-wrap:anywhere;
     }
     .service-card:hover {
       transform: translateY(-5px) scale(1.05);
@@ -101,16 +107,29 @@
     }
 
     .whatsapp-float {
-      position:fixed; bottom:30px; right:30px;
-      width:70px; height:70px; border-radius:50%;
+      position:fixed; bottom:clamp(18px, 4vw, 30px); right:clamp(18px, 4vw, 30px);
+      width:clamp(56px, 14vw, 70px); height:clamp(56px, 14vw, 70px); border-radius:50%;
       background:#25D366; color:#fff;
-      font-size:2.5rem; display:flex; align-items:center; justify-content:center; z-index:1000;
+      font-size:clamp(2rem, 8vw, 2.5rem); display:flex; align-items:center; justify-content:center; z-index:1000;
       transition:0.3s;
     }
     .whatsapp-float:hover {transform:scale(1.2);}
 
-    @media(max-width:1024px){.services-cards {grid-template-columns: repeat(2, 1fr); gap:1.5rem;}}
-    @media(max-width:600px){.services-cards {grid-template-columns: 1fr; gap:1rem;}}
+    @media(max-width:600px){
+      header {min-height:76px;}
+      .logo-area h1 {letter-spacing:1px;}
+      .menu-btn {padding:10px 16px;}
+      .faixa-vermelha {top:76px;}
+      .sidebar {top:84px;}
+      main {margin-top:82px;}
+      .services-section {padding-bottom:6rem;}
+    }
+
+    @media(max-width:380px){
+      header {padding-left:10px; padding-right:10px;}
+      .logo-area {gap:8px;}
+      .menu-btn {font-size:0.85rem; padding:9px 12px;}
+    }
   </style>
 </head>
 <body>
